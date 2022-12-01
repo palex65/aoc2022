@@ -1,17 +1,18 @@
+
+fun List<String>.toCalories() =
+    splitBy { it.isEmpty() }                // List<List<String>>
+    .map { it.map { it.toInt() }.sum() }    // List<Int>
+
+fun part1(calories: List<Int>) = calories.max()
+
+fun part2(calories: List<Int>) = calories.sorted().takeLast(3).sum()
+
 fun main() {
-    fun part1(input: List<String>): Int {
-        return input.size
-    }
+    val testCalories = readInput("Day01_test").toCalories()
+    check(part1(testCalories) == 24000)
+    check(part2(testCalories) == 45000)
 
-    fun part2(input: List<String>): Int {
-        return input.size
-    }
-
-    // test if implementation meets criteria from the description, like:
-    val testInput = readInput("Day01_test")
-    check(part1(testInput) == 1)
-
-    val input = readInput("Day01")
-    println(part1(input))
-    println(part2(input))
+    val calories = readInput("Day01").toCalories()
+    println(part1(calories))  // 69795
+    println(part2(calories))  // 208437
 }
