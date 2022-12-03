@@ -30,10 +30,10 @@ fun String.toRound( response: (symbol: Char, opponent: Play) -> Play ): Round {
     return Round(opponent, response(this[2], opponent))
 }
 
-fun part1(lines: List<String>): Int =
+private fun part1(lines: List<String>): Int =
     lines.sumOf { it.toRound { symbol, _ -> symbol.toPlay(responseCode = true) }.toScore() }
 
-fun part2(lines: List<String>): Int =
+private fun part2(lines: List<String>): Int =
     lines.sumOf { it.toRound { symbol, opponent -> symbol.toResult().toResponse(opponent) }.toScore() }
 
 fun main() {
