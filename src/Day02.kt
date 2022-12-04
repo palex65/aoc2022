@@ -20,8 +20,7 @@ fun Char.toResult() = RoundResult.values().first { this == it.part2Symbol }
 
 data class Round(val opponent: Play, val response: Play) {
     private fun toResult() = RoundResult.values().first { response == it.toResponse(opponent) }
-    fun toScore() =
-        response.score + toResult().score
+    fun toScore() = response.score + toResult().score
 }
 
 fun String.toRound( response: (symbol: Char, opponent: Play) -> Play ): Round {

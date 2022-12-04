@@ -5,17 +5,15 @@ fun Char.toPriority() = when (this) {
     else -> error("Invalid item $this")
 }
 
-private fun part1(lines: List<String>): Int =
-    lines.sumOf { l ->
-        val a = l.substring(0, l.length / 2)
-        val b = l.substring(l.length / 2)
-        a.first { it in b }.toPriority()
-    }
+private fun part1(lines: List<String>) = lines.sumOf { l ->
+    val a = l.substring(0, l.length / 2)
+    val b = l.substring(l.length / 2)
+    a.first { it in b }.toPriority()
+}
 
-private fun part2(lines: List<String>): Int =
-    lines.chunked(3).sumOf { (a, b, c) ->
-        a.first { it in b && it in c }.toPriority()
-    }
+private fun part2(lines: List<String>) = lines.chunked(3).sumOf { (a, b, c) ->
+    a.first { it in b && it in c }.toPriority()
+}
 
 fun main() {
     val testInput = readInput("Day03_test")
