@@ -13,10 +13,6 @@ class Dir(name: String, val parent: Dir?, var entries: List<Entry> = emptyList()
             }
         }
     }
-    fun sumAtMost(max: Int): Int =
-        entries.filterIsInstance<Dir>().sumOf {
-            it.sumAtMost(max)
-        } + if (size<=max) size else 0
     fun allSizes(): List<Int> {
         val dirs: List<Dir> = entries.filterIsInstance<Dir>()
         return if (dirs.isEmpty()) listOf(size) else
@@ -41,9 +37,9 @@ fun processCommands(cmds: List<Command>): Dir {
     return root
 }
 
-open class Command()
-data class CD(val name: String) : Command()
-data class LS(val entries: List<String>) : Command()
+sealed class Command()
+class CD(val name: String) : Command()
+class LS(val entries: List<String>) : Command()
 
 fun List<String>.toCommands(): List<Command> {
     val lst = mutableListOf<Command>()
@@ -66,7 +62,7 @@ fun List<String>.toCommands(): List<Command> {
 private fun part1(lines: List<String>): Int {
     val root = processCommands(lines.toCommands().drop(1))
     root.processSize()
-    return root.sumAtMost(100000)
+    return root.allSizes().sumOf { if (it<=100000) it else 0 }
 }
 
 private fun part2(lines: List<String>): Int {
