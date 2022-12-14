@@ -28,7 +28,7 @@ private fun String.splitSeq(): List<String>  {
                 res.add( substring(lastIdx,idx) )
                 lastIdx=++idx
             }
-            '[' -> idx = indexOfClosedPair(idx+1)+1 
+            '[' -> idx = indexOfClosedPair(idx+1)+1
             else -> ++idx
         }
     }
