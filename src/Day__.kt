@@ -1,11 +1,14 @@
+@file:Suppress("PackageDirectoryMismatch")
+package day__
+import readInput
 
+fun part1(lines: List<String>): Int {
+    return 1
+}
 
-
-private fun part1(lines: List<String>): Int =
-    lines.size
-
-private fun part2(lines: List<String>): Int =
-    lines.size
+fun part2(lines: List<String>): Int {
+    return 1
+}
 
 fun main() {
     val testInput = readInput("Day??_test")
